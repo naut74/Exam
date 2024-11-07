@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu 4</title>
+    <style>
+        body{
+            margin: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            width: 80%;
+            border-collapse: collapse;
+            border: 1px solid black;
+            text-align: center;
+        }
+        th, td{
+            border: 1px solid black;
+            padding: 5px;
+        }
+        thead{
+            background-color: #8a8a8a;
+            border-bottom: 1px solid black;
+        }
+        tbody{
+            text-align: start;
+        }
+        tr:nth-child(even) {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>Câu 4</h1>
+    <h2>QUẢN LÍ CÔNG NHÂN</h2>
+
+    <table class="container">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Số Công Nhân</th>
+                <th>Họ & Tên</th>
+                <th>Ngày Sinh</th>
+                <th>Địa Chỉ</th>
+                <th>Mức Lương</th>
+                <th>Chức Vụ</th>
+            </tr>
+        </thead>
+        <tbody id="workerTable">
+        </tbody>
+    </table>
+
+    <script>
+        class Worker {
+            constructor(number, fullName, birth, address, salary, position) {
+                this.number = number;
+                this.fullName = fullName;
+                this.birth = birth;
+                this.address = address;
+                this.salary = salary;
+                this.position = position;
+            }
+        }
+
+        const workers = [
+            new Worker('123456', 'John Doe', '1990-01-01', '123 Street, City', '$50,000', 'Developer'),
+            new Worker('654321', 'Jane Smith', '1985-12-31', '456 Street, City', '$60,000', 'Manager'),
+            new Worker('789101', 'Alex Johnson', '1992-03-15', '789 Street, City', '$55,000', 'Designer'),
+            new Worker('112233', 'Emily Davis', '1987-07-20', '101 Street, City', '$52,000', 'QA Engineer')
+        ];
+
+        function addWorkersToTable() {
+            let table = document.getElementById("workerTable");
+
+            workers.sort((a, b) => {
+                let nameA = a.fullName.toLowerCase(); 
+                let nameB = b.fullName.toLowerCase();
+                if (nameA < nameB) return -1;
+                if (nameA > nameB) return 1;
+                return 0;
+            });
+
+            workers.forEach((worker, index) => {
+                let newRow = table.insertRow();
+                newRow.insertCell(0).innerHTML = index + 1; 
+                newRow.insertCell(1).innerHTML = worker.number;
+                newRow.insertCell(2).innerHTML = worker.fullName;
+                newRow.insertCell(3).innerHTML = worker.birth;
+                newRow.insertCell(4).innerHTML = worker.address;
+                newRow.insertCell(5).innerHTML = worker.salary;
+                newRow.insertCell(6).innerHTML = worker.position;
+            });
+        }
+
+        window.onload = addWorkersToTable;
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Câu 1</h1>
+    <p id="arr"></p>
+    <p id="result"></p>
+    <script>
+        let arr = [];
+        let sum = 0;
+        let count1 = 0;
+        let n = parseInt(prompt('Nhập số phần tử của mảng (từ 1 đến 50):'));
+        
+        if (n <= 0 || n > 50) {
+            alert("Số phần tử phải trong khoảng từ 1 đến 50.");
+        } else {
+            for (let i = 0; i < n; i++) {
+                let input = parseInt(prompt("Nhập số thứ " + (i + 1) + ":"));
+                arr.push(input);
+
+                if (arr[i] % 3 == 0) {
+                    sum += arr[i];
+                    count1++;
+                }
+            }
+            
+            document.getElementById("arr").innerHTML = "Danh sách các phần tử: " + arr.join(", ");
+            
+            if (count1 > 0) {
+                document.getElementById('result').innerHTML = "Trung bình cộng các số chia hết cho 3 là: " + (sum / count1).toFixed(2);
+            } else {
+                document.getElementById('result').innerHTML = "Không có số nào chia hết cho 3.";
+            }
+        }
+    </script>
+</body>
+</html>
